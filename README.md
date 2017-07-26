@@ -3,6 +3,8 @@ A simple discord bot who can be called with a command to join the current vocal 
 
 There is only French 🇫🇷 samples yet.
 
+Click on the link to directly add the bot on your server : https://discordapp.com/oauth2/authorize?client_id=321579569654005761&scope=bot&permissions=36711424
+
 ## How to use locally
 
 ### Step 1, install dependencies
