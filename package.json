@@ -1,0 +1,16 @@
+{
+  "name": "memes-bot",
+  "version": "1.0.0",
+  "description": "A simple discord bot who can be called with a command to join the current vocal channel and play a sound",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.1.0",
+    "file-system": "^2.2.2",
+    "node-opus": "^0.2.6"
+  }
+}
