@@ -15,10 +15,7 @@ module.exports = class Commands {
 		let channel = message.channel
 		let id = message.member.voiceChannelID
 		let availableSounds = sounds()
-
-		//Add the help command
-		availableSounds.push('help')
-
+		
 		args.shift()
 		message.delete()
 
@@ -28,26 +25,24 @@ module.exports = class Commands {
 			args = args.toString()
 			var isAvailable = availableSounds.includes(args)
 			if (isAvailable) {
-				if (args === 'help') {
-					sendMessage(channel, 'The supported commands are :```\n' + availableSounds.join('\n') + '```')
-				} else {
-					if (!flag) {
-						if (typeof id !== 'undefined' && id) {
-							flag = true
-							let voiceChannel = message.guild.channels
-							.filter((chan) => {
-								return chan.id === id
+				if (!flag) {
+					if (typeof id !== 'undefined' && id) {
+						flag = true
+						let voiceChannel = message.guild.channels
+						.filter((chan) => {
+							return chan.id === id
+						})
+						.first()
+						voiceChannel.join().then((connection) => {
+							connection.playFile(`./sounds/${args}.mp3`).on('end', () => {
+								connection.disconnect()
+								flag = false
 							})
-							.first()
-							voiceChannel.join().then((connection) => {
-								connection.playFile(`./sounds/${args}.mp3`).on('end', () => {
-									connection.disconnect()
-									flag = false
-								})
-							})
-						}
+						})
 					}
 				}
+			} else if (args === 'help') {
+				sendMessage(channel, 'The supported commands are :```\n' + availableSounds.join('\n') + '```')
 			} else {
 				sendMessage(channel, `Wrong command, type ***${command} help*** for more informations`)
 			}
